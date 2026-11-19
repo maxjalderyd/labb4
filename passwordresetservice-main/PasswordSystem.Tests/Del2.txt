@@ -1,0 +1,16 @@
+Del 2: Analysera testbarheten i Videoteket
+Fråga 1:
+Identifierade du någon del av koden i Videoteket som direkt gick att testa? Vilken/vilka och varför?
+- Vi har en ShowAllMovies-metod som vi skulle kunna testa med en testdatabasa och se att vi får ut information om filmen. Sen har vi GetDiscountOnReceipt där vi får ut en siffra på hur mycket rabatt man får under en kampanj på en film.
+
+
+Fråga 2:
+Identifierade du någon del av koden i Videoteket som var svår eller omöjlig att testa? Vilken/vilka och varför?
+- RentMovie blir nog väldigt svår att testa för oss. Lång metod med mycket att kolla. Går att göra men måste kanske skrivas om en del.
+
+Fråga 3:
+Om du identifierade delar som var svåra eller omöjliga att testa, hur skulle du kunna ändra koden för att göra den mer testbar?
+- Våra metoder som jobbar direkt mot databasen skulle kanske behöva hjälp-metoder som också kopierar data som sätts in eller hämtas ut. Och sen har man en look-up på properties och jämför med det man lagt in eller hämtat ut ur databasen.
+
+Fråga 4:
+Ändrade du någon kod i Videoteket för att göra den testbar? I så fall, vad ändrade du och hur påverkade det testbarheten?
