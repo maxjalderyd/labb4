@@ -18,11 +18,13 @@ public class PasswordResetService(IEmailProvider emailProvider, ITokenGenerator 
             _emailProvider.SendEmail(email, subject, body);
             Resetcount ++;
         }
+        else { throw new InvalidOperationException("Eposten finns inte i systemet."); }
+        
         if (Resetcount > 3) 
         {
             throw new InvalidOperationException("kan inte skicka mer än 3 resetemails");
         }
-        else { throw new InvalidOperationException("Eposten finns inte i systemet."); }
+        
     }
 
     private string CreateEmailBody(string token)
