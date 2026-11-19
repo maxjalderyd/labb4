@@ -16,6 +16,7 @@ public class PasswordResetService(IEmailProvider emailProvider, ITokenGenerator 
             string body = CreateEmailBody(token);
             _emailProvider.SendEmail(email, subject, body);
         }
+        else { throw new InvalidOperationException("Eposten finns inte i systemet."); }
     }
 
     private string CreateEmailBody(string token)
