@@ -7,14 +7,20 @@ public class PasswordResetService(IEmailProvider emailProvider, ITokenGenerator 
 
     public List<String> emailsInSystem = new List<String>();
 
+    public int Resetcount { get ; set ; } = 0;
     public void SendResetEmail(string email)
     {
-        if (emailsInSystem.Contains(email))
+        if (emailsInSystem.Contains(email) && Resetcount >= 3)
         {
             string subject = "Password Reset Requested";
             string token = _tokenGenerator.Generate();
             string body = CreateEmailBody(token);
             _emailProvider.SendEmail(email, subject, body);
+            Resetcount ++;
+        }
+        if (Resetcount > 3) 
+        {
+            throw new InvalidOperationException("kan inte skicka mer än 3 resetemails");
         }
         else { throw new InvalidOperationException("Eposten finns inte i systemet."); }
     }
