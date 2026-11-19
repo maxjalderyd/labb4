@@ -5,12 +5,17 @@ public class PasswordResetService(IEmailProvider emailProvider, ITokenGenerator 
     private readonly IEmailProvider _emailProvider = emailProvider;
     private readonly ITokenGenerator _tokenGenerator = tokenGenerator;
 
+    public List<String> emailsInSystem = new List<String>();
+
     public void SendResetEmail(string email)
     {
-        string subject = "Password Reset Requested";
-        string token = _tokenGenerator.Generate();
-        string body = CreateEmailBody(token);
-        _emailProvider.SendEmail(email, subject, body);
+        if (emailsInSystem.Contains(email))
+        {
+            string subject = "Password Reset Requested";
+            string token = _tokenGenerator.Generate();
+            string body = CreateEmailBody(token);
+            _emailProvider.SendEmail(email, subject, body);
+        }
     }
 
     private string CreateEmailBody(string token)

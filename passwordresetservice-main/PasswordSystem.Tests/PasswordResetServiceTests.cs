@@ -10,6 +10,7 @@ public class PasswordResetServiceTests
         var fakeTokenGenerator = new FakeTokenGenerator();
         var sut = new PasswordResetService(fakeEmailProvider, fakeTokenGenerator);
         var testEmail = "test@test.com";
+        sut.emailsInSystem.Add(testEmail);
 
         // Act
         sut.SendResetEmail(testEmail);
@@ -18,5 +19,6 @@ public class PasswordResetServiceTests
         var sentEmail = Assert.Single(fakeEmailProvider.SentEmails);
         Assert.Equal(testEmail, sentEmail.To);
         Assert.Contains(fakeTokenGenerator.Token, sentEmail.Body);
+        Assert.Contains(testEmail, sut.emailsInSystem);
     }
 }
