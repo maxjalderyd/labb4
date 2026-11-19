@@ -14,3 +14,4 @@ Om du identifierade delar som var svåra eller omöjliga att testa, hur skulle d
 
 Fråga 4:
 Ändrade du någon kod i Videoteket för att göra den testbar? I så fall, vad ändrade du och hur påverkade det testbarheten?
+- Kanske implementera ett interface för att köra samtidigt med någon testklass. Men vi vill egentligen inte ändra koden.
